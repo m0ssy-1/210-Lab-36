@@ -12,7 +12,7 @@ void loadFromFile(const string &filename, IntBinaryTree &tree) {
         return;
     }
     string code;
-    int count = 0
+    int count = 0;
 
     while (inFile >> code) {
         tree.insertNode(code);
@@ -37,6 +37,8 @@ void showMenu() {
 
 int main() {
     IntBinaryTree tree;
+
+    loadFromFile("codes.txt", tree);
 
     int choice = 0;
     string code, oldCode, newCode;
@@ -80,14 +82,28 @@ int main() {
             }
             break;
         case 5:
-        cout << "Enter existing code to modify: ";
-        cin >> oldCode;
-        if (!tree.searchNode(oldCode)) {
-            cout << "Code '" << oldCode << "' not found.\n";
+            cout << "Enter existing code to modify: ";
+            cin >> oldCode;
+            if (!tree.searchNode(oldCode)) {
+                cout << "Code '" << oldCode << "' not found.\n";
+            } else {
+            cout << "Enter new code to replace it: ";
+            cin >> newCode;
             
+            tree.remove(oldCode);
+            tree.insertNode(newCode);
+
+            cout << "Code '" << oldCode << "' changed to '" << newCode << "'.\n";
+            }
+            break;
+        case 6:
+            cout << "Exiting program...\n";
+            break;
+
+        default:
+            cout << "Invalid choice, try again.\n";
         }
-        }
-    }
+    } while (choice != 6);
 
     return 0;
 }
