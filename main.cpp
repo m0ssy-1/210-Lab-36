@@ -60,7 +60,32 @@ int main() {
                 cout << "Code '" << code << "' NOT found.\n";
             break;
         case 3:
-        
+            cout << "Enter code to add: ";
+            cin >> code;
+            if (tree.searchNode(code)) {
+                cout << "Code already exists.\n";
+            } else {
+                tree.insertNode(code);
+                cout << "Code '" << code << "' added.\n";
+            }
+            break;
+        case 4:
+            cout << "Enter code to delete: ";
+            cin >> code;
+            if (tree.searchNode(code)) {
+                tree.remove(code);
+                cout << "Code '" << code << "' deleted.\n";
+            } else {
+                cout << "Code '" << code << "' not found.\n";
+            }
+            break;
+        case 5:
+        cout << "Enter existing code to modify: ";
+        cin >> oldCode;
+        if (!tree.searchNode(oldCode)) {
+            cout << "Code '" << oldCode << "' not found.\n";
+            
+        }
         }
     }
 
