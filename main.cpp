@@ -5,6 +5,26 @@
 
 using namespace std;
 
+void loadFromFile(const string &filename, IntBinaryTree &tree) {
+    ifstream inFile(filename);
+    if (!inFile) {
+        cerr << "Error: Could not open file '" << filename << "'." << endl;
+        return;
+    }
+    string code;
+    int count = 0
+
+    while (inFile >> code) {
+        tree.insertNode(code);
+        ++count;
+    }
+
+    cout << "Loaded " << count << " codes from " << filename << "." << endl;
+
+}
+
+
+
 int main() {
     IntBinaryTree tree;
 
