@@ -23,28 +23,46 @@ void loadFromFile(const string &filename, IntBinaryTree &tree) {
 
 }
 
+void showMenu() {
+    cout << "\n===== Code BST Menu =====\n";
+    cout << "1. Display all codes (in-order)\n";
+    cout << "2. Search for a code\n";
+    cout << "3. Add a new code\n";
+    cout << "4. Delete a code\n";
+    cout << "5. Modify a code\n";
+    cout << "6. Exit\n";
+    cout << "Enter your choice: ";
+}
 
 
 int main() {
     IntBinaryTree tree;
 
-    ifstream inFile("codes.txt");
-    if (!inFile) {
-        cerr << "Error: could not open codes.txt" << endl;
-        return 1;
+    int choice = 0;
+    string code, oldCode, newCode;
+
+    do {
+        showMenu();
+        cin >> choice;
+        
+        switch (choice) {
+        case 1:
+            cout << "\nCodes in BST:\n";
+            tree.displayInOrder();
+            break;
+            
+        case 2:
+            cout << "Enter code to search: ";
+            cin >> code;
+            if(tree.searchNode(code))
+                cout << "Code '" << code << "' FOUND.\n";
+            else
+                cout << "Code '" << code << "' NOT found.\n";
+            break;
+        case 3:
+        
+        }
     }
-    string code;
-    int count = 0;
-
-    while (inFile >> code) {
-        tree.insertNode(code);
-        ++count;
-    }
-
-    cout << "loaded " << count << "codes into the BST." << endl;
-    cout << "In order travarsal of codes:" << endl;
-
-    tree. displayInOrder();
 
     return 0;
 }
