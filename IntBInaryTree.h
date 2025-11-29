@@ -36,7 +36,6 @@ void displayPostOrder() const { displayPostOrder(root); }
 };
 
 #include <iostream>
-#include "IntBinaryTree.h"
 using namespace std;
 
 void IntBinaryTree::insert(TreeNode *&nodePtr, TreeNode *&newNode) {
@@ -112,16 +111,18 @@ delete tempNodePtr;
 
 else {
 
-tempNodePtr = nodePtr->right;
+    tempNodePtr = nodePtr->right;
 
-while (tempNodePtr->left)
+    while (tempNodePtr->left)
+        tempNodePtr = tempNodePtr->left;
 
-tempNodePtr->left = nodePtr->left;
-tempNodePtr = nodePtr;
+    tempNodePtr->left = nodePtr->left;
+    tempNodePtr = nodePtr;
 
-nodePtr = nodePtr->right;
-delete tempNodePtr;
+    nodePtr = nodePtr->right;
+    delete tempNodePtr;
 }
+
 }
 
 void IntBinaryTree::displayInOrder(TreeNode *nodePtr) const {
